@@ -1,7 +1,7 @@
 public interface TCPConnectionListener {
     void onConnectionReady(TCPConnection tcpConnection);
 
-    void onReceiveString(TCPConnection tcpConnection, String value);
+    void onReceiveObject(TCPConnection tcpConnection, Object obj);
 
     void onDisconnect(TCPConnection tcpConnection);
 
