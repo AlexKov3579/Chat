@@ -1,16 +1,25 @@
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Objects;
 
 public class User implements Serializable {
     private String username;
-    private String IP_ADDR;
+    private InetAddress IP_ADDR;
     private int port;
 
-    User(String IP_ADDR, int port) {
-
+    User(String IP_ADDR, int port) throws UnknownHostException {
+        this.IP_ADDR = InetAddress.getByName(IP_ADDR);
+        this.port = port;
     }
 
-    User(String username, String IP_ADDR, int port) {
+    User(String username, String IP_ADDR, int port) throws UnknownHostException {
+        this.username = username;
+        this.IP_ADDR = InetAddress.getByName(IP_ADDR);
+        this.port = port;
+    }
+
+    User(String username, InetAddress IP_ADDR, int port) throws UnknownHostException {
         this.username = username;
         this.IP_ADDR = IP_ADDR;
         this.port = port;
@@ -25,7 +34,7 @@ public class User implements Serializable {
         return username;
     }
 
-    public String getIP_ADDR() {
+    public InetAddress getIP_ADDR() {
         return IP_ADDR;
     }
 
@@ -46,4 +55,9 @@ public class User implements Serializable {
     public int hashCode() {
         return Objects.hash(IP_ADDR, port);
     }
+
+//    @Override
+//    public String toString() {
+//        return username+" : "+IP_ADDR+" : "+ port;
+//    }
 }
