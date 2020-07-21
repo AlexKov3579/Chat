@@ -46,7 +46,7 @@ public class ChatServer implements TCPConnectionListener {
             for (int i = 0; i < connections.size(); i++) {
                 Socket socket = connections.get(i).getSocket();
                 if (socket.getInetAddress().equals(user.getIP_ADDR()) && socket.getPort() == user.getPort()) {
-                    tcpConnection.setUser(user);
+                    connections.get(i).setUser(user);
                     break;
                 }
             }
@@ -59,7 +59,6 @@ public class ChatServer implements TCPConnectionListener {
     public synchronized void onDisconnect(TCPConnection tcpConnection) {
         connections.remove(tcpConnection);
         sendToAllConnections(makeDefaultModelList());
-//        users.remove(tcpConnection.getUser());
         sendToAllConnections(new Message("Client died: " + tcpConnection.getUser().getUsername()));
 
     }

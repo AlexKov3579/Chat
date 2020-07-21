@@ -20,7 +20,7 @@ public class TCPConnection {
 
     public TCPConnection(Socket socket, TCPConnectionListener eventListener, String username) throws IOException {
         this.eventListener = eventListener;
-        this.user = new User(username, socket.getInetAddress(), socket.getPort());
+        this.user = new User(username, socket.getInetAddress(), socket.getLocalPort());
         this.socket = socket;
 
 
